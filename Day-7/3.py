@@ -37,13 +37,13 @@ prefix1 = input("Enter valid prefix : ").strip()
 prefix = prefix1[::-1]
 s = Stack(len(prefix))
 p = {"+": 1, "-": 1, "*": 2, "/": 2, "%": 2}
-infix = []
+postfix = []
 for i in prefix:
     if i in p:
         op1 = s.pop()
         op2 = s.pop()
         a = op1 + op2 + i
-        infix.append(a)
+        postfix.append(a)
     else: 
         s.push(i)
-print(infix[0])
+print(postfix[0])
