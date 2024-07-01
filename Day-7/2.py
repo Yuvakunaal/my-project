@@ -40,10 +40,10 @@ p = {"+": 1, "-": 1, "*": 2, "/": 2, "%": 2}
 infix = []
 for i in prefix:
     if i in p:
-        op1 = infix.pop()
-        op2 = infix.pop()
+        op1 = stack.pop()
+        op2 = stack.pop()
         a = op1 + i + op2
         infix.append(a)
     else: 
-        infix.append(i)
+        stack.append(i)
 print(infix[0])
