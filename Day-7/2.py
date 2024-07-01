@@ -33,25 +33,17 @@ class Stack:
     def display(self):
         return self.stack
 
-
-def prefix_to_infix(prefix):
-    s = Stack(len(prefix))
-    p = {"+": 1, "-": 1, "*": 2, "/": 2, "%": 2}
-    infix = []
-    for ch in reversed(prefix):
-        if ch in p:
-            # op1 = "(" + infix.pop() + ")" if infix else ""
-            # op2 = "(" + infix.pop() + ")" if infix else ""
-            op1 = infix.pop()
-            op2 = infix.pop()
-            result = op1 + ch + op2
-            infix.append(result)
-        else: 
-            infix.append(ch)
-
-    return infix.pop()
-
-
-prefix_expression = "+ab"
-infix_expression = prefix_to_infix(prefix_expression)
-print("Infix expression:", infix_expression)
+prefix1 = input("Enter valid prefix : ").strip()
+prefix = prefix1[::-1]
+s = Stack(len(prefix))
+p = {"+": 1, "-": 1, "*": 2, "/": 2, "%": 2}
+infix = []
+for i in prefix:
+    if i in p:
+        op1 = infix.pop()
+        op2 = infix.pop()
+        a = op1 + i + op2
+        infix.append(a)
+    else: 
+        infix.append(i)
+print(infix[0])
