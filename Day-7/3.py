@@ -42,7 +42,7 @@ for i in prefix:
     if i in p:
         op1 = s.pop()
         op2 = s.pop()
-        a = op1 + i + op2
+        a = op1 + op2 + i
         infix.append(a)
     else: 
         s.push(i)
