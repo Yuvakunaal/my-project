@@ -83,4 +83,21 @@ class Solution:
             print(stack)
         return "".join(stack)
 
+# https://leetcode.com/problems/132-pattern/description/
+class Solution:
+    def find132pattern(self, nums: List[int]) -> bool:
+        a = -float('inf') #initializing with -infinity
+        s = []
+        print(nums[::-1])
+        for i in nums[::-1]:
+            print(a)
+            if(i < a):
+                return True
+            while(s and s[-1] < i):
+                a = s.pop()
+            s.append(i)
+        return False
+
+
+
         
