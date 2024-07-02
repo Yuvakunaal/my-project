@@ -54,7 +54,5 @@ for ch in infix :
 while not s.isEmpty():
     prefix.append(s.pop())
 
-ans = ""
-for i in prefix[::-1] :
-    ans+=i
+ans = "".join(prefix[::-1])
 print(ans)
