@@ -72,3 +72,22 @@ class Solution:
             curr -= arr[i - k + 1]
         
         return count
+
+# https://leetcode.com/problems/longest-subarray-of-1s-after-deleting-one-element/description/
+class Solution:
+    def longestSubarray(self, nums: List[int]) -> int:
+        n = len(nums)
+        max_len = 0
+        count_ones = 0
+        left = 0
+        
+        for right in range(n):
+            if nums[right] == 1:
+                count_ones += 1
+            while right - left + 1 - count_ones > 1:
+                if nums[left] == 1:
+                    count_ones -= 1
+                left += 1
+            max_len = max(max_len, right - left)
+        
+        return max_len
