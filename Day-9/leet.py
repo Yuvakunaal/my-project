@@ -91,3 +91,8 @@ class Solution:
             max_len = max(max_len, right - left)
         
         return max_len
+
+# https://leetcode.com/problems/kth-largest-element-in-an-array/description/
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        return sorted(nums)[-k]
