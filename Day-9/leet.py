@@ -12,3 +12,11 @@ class Solution:
         b = sum([int(digit) for num in nums for digit in str(num)])
         return abs(a-b)
 
+# https://leetcode.com/problems/find-the-highest-altitude/description/
+class Solution:
+    def largestAltitude(self, gain: List[int]) -> int:
+        gain.insert(0,0)
+        for i in range(1,len(gain)):
+            gain[i]+=gain[i-1]
+        return max(gain)
+        
