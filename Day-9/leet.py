@@ -35,4 +35,24 @@ class Solution:
     def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
         num = set(nums)
         return [i for i in range(1,len(nums)+1) if i not in num]
+
+# https://leetcode.com/problems/count-number-of-nice-subarrays/description/
+class Solution:
+    def numberOfSubarrays(self, nums: List[int], k: int) -> int:
+        counts = {0: 1}
+        count_odds = 0
+        result = 0
+
+        for num in nums:
+            if num % 2 == 1:
+                count_odds += 1
+            #if there are subarrays ending at the current index with exactly k odd numbers
+            if count_odds - k in counts: 
+                result += counts[count_odds - k]
+            if count_odds in counts:
+                counts[count_odds] += 1
+            else:
+                counts[count_odds] = 1
+        
+        return result
     
