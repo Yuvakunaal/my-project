@@ -56,3 +56,19 @@ class Solution:
         
         return result
     
+# https://leetcode.com/problems/number-of-sub-arrays-of-size-k-and-average-greater-than-or-equal-to-threshold/description/
+class Solution:
+    def numOfSubarrays(self, arr: List[int], k: int, threshold: int) -> int:
+        count = 0
+        target = k * threshold 
+
+        curr = 0
+        for i in range(k - 1):
+            curr += arr[i]
+        for i in range(k - 1, len(arr)):
+            curr += arr[i]
+            if curr >= target:
+                count += 1
+            curr -= arr[i - k + 1]
+        
+        return count
