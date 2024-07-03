@@ -100,3 +100,14 @@ class Solution:
 class Solution:
    def findKthLargest(self, nums: List[int], k: int) -> int:
        return heapq.nlargest(k,nums)[-1]
+
+# https://leetcode.com/problems/find-the-score-of-all-prefixes-of-an-array/description/
+class Solution:
+    def findPrefixScore(self, nums: List[int]) -> List[int]:
+        maxx = 0
+        for i in range(0, len(nums)):
+            maxx = max(maxx, nums[i])
+            nums[i] += maxx
+            if i>0:
+                nums[i] += nums[i-1]
+        return nums 
