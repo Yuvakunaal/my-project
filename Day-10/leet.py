@@ -71,3 +71,15 @@ class Solution:
             s.extend(s[i] * [3 ^ s[-1]]) # ^ = XOR (one is true and other is false)
             i += 1
         return s[:n].count(1)
+
+# https://leetcode.com/problems/find-all-anagrams-in-a-string/description/
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        ans = []
+        p1 = sorted(p)
+        for i in range(len(s)-len(p)+1):
+            a = s[i:i+len(p)]
+            if sorted(a) == p1:
+                ans.append(i)
+        return ans
+
