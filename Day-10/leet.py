@@ -24,4 +24,16 @@ class Solution:
             if i!=j:
                 c+=1
         return s1==s2 or sorted(s1)==sorted(s2) and c==2
-        
+
+# https://leetcode.com/problems/make-three-strings-equal/description/
+class Solution:
+    def findMinimumOperations(self, s1: str, s2: str, s3: str) -> int:
+        pref_len = 0
+        for a, b, c in zip(s1, s2, s3):
+            if a == b == c:
+                pref_len += 1
+            else:
+                break
+        if not pref_len:
+            return -1
+        return sum(len(s) - pref_len for s in (s1, s2, s3))
