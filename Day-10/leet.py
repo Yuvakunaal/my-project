@@ -59,3 +59,15 @@ class Solution:
         if len(result) != len(s):
             return ""
         return "".join(result)
+
+# https://leetcode.com/problems/magical-string/description/
+class Solution:
+    def magicalString(self, n: int) -> int:
+        if n == 0:
+            return 0 
+        s = [1,2,2]
+        i = 2
+        while len(s) < n: 
+            s.extend(s[i] * [3 ^ s[-1]]) # ^ = XOR (one is true and other is false)
+            i += 1
+        return s[:n].count(1)
