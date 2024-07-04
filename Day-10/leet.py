@@ -37,3 +37,25 @@ class Solution:
         if not pref_len:
             return -1
         return sum(len(s) - pref_len for s in (s1, s2, s3))
+
+# https://leetcode.com/problems/reorganize-string/description/
+class Solution:
+    def reorganizeString(self, s: str) -> str:
+        freq = Counter(s)
+        max_heap = [(-count,char) for char,count in freq.items()]
+        heapq.heapify(max_heap)
+        prev_char = ''
+        prev_count = 0
+        result = []
+
+        while max_heap:
+            count, char = heapq.heappop(max_heap)
+            result.append(char)
+            if prev_count < 0:
+                heapq.heappush(max_heap,(prev_count,prev_char))
+            prev_char = char
+            prev_count = count+1
+            
+        if len(result) != len(s):
+            return ""
+        return "".join(result)
