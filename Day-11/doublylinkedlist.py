@@ -77,6 +77,13 @@ class DoublyLinkedList :
                 current.prev.next = current.next
             if current == self.head:  # If we are deleting the head node
                 self.head = current.next
+    def display(self):
+        current = self.head
+        print("None",end=" <-> ")
+        while current!=None :
+            print(current.data,end=" <-> ")
+            current=current.next
+        print("None")
 
 dll = DoublyLinkedList()
 dll.insert_at_beginning(10)

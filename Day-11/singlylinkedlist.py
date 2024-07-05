@@ -69,7 +69,13 @@ class SinglyLinkedList :
                 print("Key doesnot exist in list!!!")
             else:
                 current.next = current.next.next
-                
+    def display(self):
+        current = self.head
+        while current is not None :
+            print(current.data,end=" -> ")
+            current = current.next
+        print("None")
+
 sll = SinglyLinkedList()
 sll.insert_at_beginning(10)
 sll.insert_at_beginning(20)
