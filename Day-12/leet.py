@@ -147,3 +147,32 @@ class Solution:
            cur.next = ListNode(arr[i])
            cur = cur.next
        return head
+
+# https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list/description/
+class Solution:
+    def flatten(self, head: 'Optional[Node]') -> 'Optional[Node]':
+        if not head:
+            return head
+        arr = []
+        self.flatten_to_array(head, arr)
+        print(arr)
+        return self.arr_to_doubly_list(arr)
+        
+    def flatten_to_array(self, node, nodes):
+        while node:
+            nodes.append(node)
+            if node.child:
+                self.flatten_to_array(node.child, nodes)
+                node.child = None  
+            node = node.next
+    def arr_to_doubly_list(self,arr):
+        if not arr:
+            return None
+        head = arr[0]
+        cur = head
+        for i in range(1, len(arr)):
+            cur.next = arr[i]
+            arr[i].prev = cur
+            cur = cur.next
+        cur.next = None
+        return head
