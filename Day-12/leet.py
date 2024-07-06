@@ -123,3 +123,27 @@ class Solution:
            cur = cur.next
        return head
 
+# https://leetcode.com/problems/swap-nodes-in-pairs/description/
+class Solution:
+    def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head:
+           return head
+        a = []
+        cur = head
+        while cur:
+            a.append(cur.val)
+            cur = cur.next
+
+        for i in range(0, len(a) - 1, 2):
+            a[i], a[i + 1] = a[i + 1], a[i]
+        return self.arr_to_listnode(a)
+
+    def arr_to_listnode(self,arr):
+       if not arr:
+           return None
+       head = ListNode(arr[0])
+       cur = head
+       for i in range(1,len(arr)):
+           cur.next = ListNode(arr[i])
+           cur = cur.next
+       return head
