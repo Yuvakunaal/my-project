@@ -82,4 +82,44 @@ class Solution:
        return head
 
 # https://leetcode.com/problems/reorder-list/description/
+class Solution:
+    def reorderList(self, head: ListNode) -> None:
+        if not head or not head.next:
+            return head
+        slow = fast = head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        prev, node = None, slow
+        while node:
+            prev, node.next, node = node, prev, node.next
+
+        first, second = head, prev
+        while second.next:
+            first.next, first = second, first.next
+            second.next, second = first, second.next
+
+# https://leetcode.com/problems/partition-list/description/
+class Solution:
+    def partition(self, head: Optional[ListNode], x: int) -> Optional[ListNode]:
+        if not head:
+           return head
+        a,b = [],[]
+        cur = head
+        while cur:
+            if cur.val < x:
+                a.append(cur.val)
+            else:
+                b.append(cur.val)
+            cur = cur.next
+        return self.arr_to_listnode(a+b)
+    def arr_to_listnode(self,arr):
+       if not arr:
+           return None
+       head = ListNode(arr[0])
+       cur = head
+       for i in range(1,len(arr)):
+           cur.next = ListNode(arr[i])
+           cur = cur.next
+       return head
 
