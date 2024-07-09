@@ -62,13 +62,13 @@ class Solution:
     def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
         ans1 = []
         ans2 = []
-        def inorder(root,ans):
+        def preorder(root,ans):
             if root:
                 ans.append(root.val)
-                inorder(root.left,ans)
-                inorder(root.right,ans)
+                preorder(root.left,ans)
+                preorder(root.right,ans)
             else:
                 ans.append(None)
-        inorder(p,ans1)
-        inorder(q,ans2)
+        preorder(p,ans1)
+        preorder(q,ans2)
         return ans1 == ans2
