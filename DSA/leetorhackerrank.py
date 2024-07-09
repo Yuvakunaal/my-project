@@ -72,3 +72,14 @@ class Solution:
         preorder(p,ans1)
         preorder(q,ans2)
         return ans1 == ans2
+
+# https://leetcode.com/problems/symmetric-tree/
+class Solution:
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+        def depthfirstsearch(left,right):
+            if not left and not right:
+                return True
+            if not left or not right:
+                return False
+            return ((left.val == right.val) and depthfirstsearch(left.left,right.right) and depthfirstsearch(left.right,right.left))
+        return depthfirstsearch(root.left,root.right)
