@@ -57,4 +57,18 @@ class Solution:
             return 0
         return 1+max(self.maxDepth(root.left),self.maxDepth(root.right))
 
-# 
+# https://leetcode.com/problems/same-tree/
+class Solution:
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        ans1 = []
+        ans2 = []
+        def inorder(root,ans):
+            if root:
+                ans.append(root.val)
+                inorder(root.left,ans)
+                inorder(root.right,ans)
+            else:
+                ans.append(None)
+        inorder(p,ans1)
+        inorder(q,ans2)
+        return ans1 == ans2
