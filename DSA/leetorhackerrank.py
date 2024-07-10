@@ -121,4 +121,13 @@ class Solution:
         else: 
             return self.searchBST(root.left, val)
 
-# 
+# https://leetcode.com/problems/insert-into-a-binary-search-tree/
+class Solution:
+    def insertIntoBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+        if root is None:
+            return TreeNode(val)
+        if val > root.val:
+            root.right = self.insertIntoBST(root.right,val)
+        else:
+            root.left = self.insertIntoBST(root.left,val)
+        return root
