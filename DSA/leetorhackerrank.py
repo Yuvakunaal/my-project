@@ -131,3 +131,18 @@ class Solution:
         else:
             root.left = self.insertIntoBST(root.left,val)
         return root
+
+# https://leetcode.com/problems/minimum-distance-between-bst-nodes/
+class Solution:
+    def minDiffInBST(self, root: Optional[TreeNode]) -> int:
+        def order(root,a):
+            if root is not None:
+                order(root.left,a)
+                a.append(root.val)
+                order(root.right,a)
+        a = []
+        order(root,a)
+        b = []
+        for i in range(len(a)-1):
+            b.append(abs(a[i]-a[i+1]))
+        return min(b)
