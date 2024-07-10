@@ -84,4 +84,27 @@ class Solution:
             return ((left.val == right.val) and depthfirstsearch(left.left,right.right) and depthfirstsearch(left.right,right.left))
         return depthfirstsearch(root.left,root.right)
 
-# 
+# https://leetcode.com/problems/invert-binary-tree/
+class Solution:
+    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        if root:
+            root.left,root.right = root.right,root.left
+            self.invertTree(root.left)
+            self.invertTree(root.right)
+        return root
+
+#https://leetcode.com/problems/path-sum/
+class Solution:
+    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
+        def eachsum(root,summ,arr):
+            if not root:
+                return False
+            summ+=root.val
+            if  not root.left and not root.right:
+                arr.append(summ)
+                return
+            eachsum(root.left,summ,arr)
+            eachsum(root.right,summ,arr)
+        arr = []
+        eachsum(root,0,arr)
+        return targetSum in arr
