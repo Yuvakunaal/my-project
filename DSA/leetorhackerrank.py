@@ -83,3 +83,5 @@ class Solution:
                 return False
             return ((left.val == right.val) and depthfirstsearch(left.left,right.right) and depthfirstsearch(left.right,right.left))
         return depthfirstsearch(root.left,root.right)
+
+# 
