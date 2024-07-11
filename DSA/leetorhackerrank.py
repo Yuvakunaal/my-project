@@ -157,3 +157,19 @@ class Solution:
         root.left = self.sortedArrayToBST(nums[:mid])
         root.right = self.sortedArrayToBST(nums[mid+1:])
         return root
+
+# https://leetcode.com/problems/binary-tree-maximum-path-sum/
+class Solution:
+    def maxPathSum(self, root: Optional[TreeNode]) -> int:
+        self.max_sum = float('-inf')
+        def maxPathSumHelper(node):
+            if not node:
+                return 0
+            left_max = max(0, maxPathSumHelper(node.left))
+            right_max = max(0, maxPathSumHelper(node.right))
+            max_path_through_node = node.val + left_max + right_max
+            self.max_sum = max(self.max_sum, max_path_through_node)
+            return node.val + max(left_max, right_max)
+        maxPathSumHelper(root)
+        return self.max_sum
+
