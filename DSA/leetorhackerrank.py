@@ -196,5 +196,17 @@ class Solution:
             if l and r: 
                 return node
             return l or r
-
         return get_lca(root)
+
+# https://leetcode.com/problems/kth-smallest-element-in-a-bst/
+class Solution:
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+        def order(root,a):
+            if root:
+                a.append(root.val)
+                order(root.left,a)
+                order(root.right,a)
+        a = []
+        order(root,a)
+        a.sort()
+        return a[k-1]
