@@ -184,4 +184,17 @@ class Solution:
         root.right = self.buildTree(preorder[mid+1:],inorder[mid+1:])
         return root
 
-# 
+# https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        def get_lca(node: Optional[TreeNode]) -> Optional[TreeNode]:
+            if not node: 
+                return None
+            if node in [p, q]: 
+                return node
+            l, r = get_lca(node.left), get_lca(node.right)
+            if l and r: 
+                return node
+            return l or r
+
+        return get_lca(root)
