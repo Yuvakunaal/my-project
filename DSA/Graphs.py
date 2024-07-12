@@ -22,6 +22,8 @@ def DFS_R(graph, node, visited=None):
         for neighbor in sorted(graph[node]):
             DFS_R(graph, neighbor, visited)
 
+# Breadth First Search (BFS) - Normal :-
+def BFS_N(graph):
 def run():
     graph = {
         "A": ["B", "C"],
