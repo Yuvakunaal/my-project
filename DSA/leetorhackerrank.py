@@ -210,3 +210,17 @@ class Solution:
         order(root,a)
         a.sort()
         return a[k-1]
+
+# https://leetcode.com/problems/range-sum-of-bst/submissions/1318222531/
+class Solution:
+    def rangeSumBST(self, root: Optional[TreeNode], low: int, high: int) -> int:
+        def order(root,arr):
+            if root:
+                order(root.left,arr)
+                if low <= root.val <= high:
+                    arr.append(root.val)
+                order(root.right,arr)
+        arr = []
+        order(root,arr)
+        return sum(arr) 
+
