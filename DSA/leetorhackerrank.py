@@ -224,3 +224,76 @@ class Solution:
         order(root,arr)
         return sum(arr) 
 
+# https://leetcode.com/problems/find-peak-element/
+class Solution:
+    def findPeakElement(self, nums: List[int]) -> int:
+        # O(log n)
+        left, right = 0, len(nums) - 1
+        while left < right:
+            mid = (left + right) // 2
+            if nums[mid] > nums[mid + 1]:
+                right = mid
+            else:
+                left = mid + 1
+        return left
+
+        # (or)
+        # O(n) - single line code
+        # return nums.index(max(nums))
+
+# https://leetcode.com/problems/search-a-2d-matrix/
+class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        # O(log(m*n)) :-
+        if not matrix or not matrix[0]:
+            return False
+        rows, cols = len(matrix), len(matrix[0])
+        left, right = 0, rows * cols - 1
+        while left <= right:
+            mid = (left + right) // 2
+            mid_value = matrix[mid // cols][mid % cols]
+            
+            if mid_value == target:
+                return True
+            elif mid_value < target:
+                left = mid + 1
+            else:
+                right = mid - 1
+        return False
+
+        # or
+        # O(m*n) :-
+        # m = len(matrix)
+        # n = len(matrix[0])
+        # for i in range(m):
+        #     for j in range(n):
+        #         if matrix[i][j]==target:
+        #             return True
+        # return False
+
+
+# https://leetcode.com/problems/sort-colors/
+class Solution:
+    def sortColors(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        low, mid, high = 0, 0, len(nums) - 1
+        while mid <= high:
+            if nums[mid] == 0:
+                nums[low], nums[mid] = nums[mid], nums[low]
+                low += 1
+                mid += 1
+            elif nums[mid] == 1:
+                mid += 1
+            else: 
+                nums[high], nums[mid] = nums[mid], nums[high]
+                high -= 1
+
+# https://leetcode.com/problems/kth-largest-element-in-an-array/
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        return heapq.nlargest(k,nums)[-1]
+
+# 
+
